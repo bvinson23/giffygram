@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "name": "Melissa",
+      "email": "melissa@home.com",
+      "id": 1
+    },
+    {
+      "name": "Brandon",
+      "email": "brandonvinson23@gmail.com",
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "imageURL": "https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif",
+      "userId": 2,
+      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "timestamp": 1561695022812,
+      "title": "Enhanced global utilisation",
+      "id": 1
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/H4plX4N9XdXH2H1Bku/giphy.gif",
+      "userId": 1,
+      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "timestamp": 1561695022814,
+      "title": "Trying to get to the bartender on a crowded Friday Night",
+      "id": 2
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/FoVzfcqCDSb7zCynOp/giphy.gif",
+      "userId": 2,
+      "description": "",
+      "timestamp": 1561695022819,
+      "title": "Facts",
+      "id": 3
+    }
+  ],
+  "messages": []
+}
