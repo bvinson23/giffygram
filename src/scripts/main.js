@@ -1,6 +1,6 @@
 import { getUsers, getPosts } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
-import { NavBar } from "./NavBar.js"
+import { NavBar } from "./nav/NavBar.js"
 import { Footer } from "./footer.js"
 
 const showPostList = () => {
