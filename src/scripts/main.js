@@ -57,3 +57,10 @@ applicationElement.addEventListener("click", event => {
         alert("Are you sure you want to go home?")
     }
 })
+
+applicationElement.addEventListener("click", event => {
+    if(event.target.id.startsWith("edit")){
+        console.log("post clicked", event.target.id.split("--"))
+        console.log("the id is", event.target.id.split("--")[1])
+    }
+})
