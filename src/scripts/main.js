@@ -23,7 +23,7 @@ const showNavBar = () => {
   }
 
 const showFooter = () => {
-    // Get a reference to the location on the DOM where the nav will display
+    // Get a reference to the location on the DOM where the footer will display
     const footerElement = document.querySelector("footer");
     footerElement.innerHTML = Footer();
 }
@@ -55,5 +55,12 @@ applicationElement.addEventListener("click", event => {
 applicationElement.addEventListener("click", event => {
     if(event.target.id === "homeIcon"){
         alert("Are you sure you want to go home?")
+    }
+})
+
+applicationElement.addEventListener("click", event => {
+    if(event.target.id.startsWith("edit")){
+        console.log("post clicked", event.target.id.split("--"))
+        console.log("the id is", event.target.id.split("--")[1])
     }
 })
