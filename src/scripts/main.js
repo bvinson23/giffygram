@@ -1,4 +1,4 @@
-import { getUsers, getPosts } from "./data/Datamanager.js"
+import { getUsers, getPosts, usePostCollection } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
 import { Footer } from "./footer.js"
@@ -38,13 +38,13 @@ applicationElement.addEventListener("click", event => {
     }
 })
 
-applicationElement.addEventListener("change", event => {
-    if(event.target.id === "yearSelection") {
-        const yearAsNumber = parseInt(event.target.value)
+// applicationElement.addEventListener("change", event => {
+//     if(event.target.id === "yearSelection") {
+//         const yearAsNumber = parseInt(event.target.value)
 
-        console.log(`User wants to see posts since ${yearAsNumber}`)
-    }
-})
+//         console.log(`User wants to see posts since ${yearAsNumber}`)
+//     }
+// })
 
 applicationElement.addEventListener("click", event => {
     if(event.target.id === "directMessageIcon"){
@@ -64,3 +64,25 @@ applicationElement.addEventListener("click", event => {
         console.log("the id is", event.target.id.split("--")[1])
     }
 })
+
+applicationElement.addEventListener("change", event => {
+    if (event.target.id === "yearSelection") {
+        const yearAsNumber = parseInt(event.target.value)
+        console.log(`User wants to see posts since ${yearAsNumber}`)
+        // invoke a filter function passing the year as an argument
+        showFilteredPosts(yearAsNumber);
+    }
+})
+
+const showFilteredPosts = (year) => {
+    // get a copy of the post collection
+    const epoch = Date.parse(`01/01/${year}`);
+    // filter the data
+    const filteredData = usePostCollection().filter(singlePost => {
+        if (singlePost.timestamp >= epoch) {
+            return singlePost
+        }
+    })
+    const postElement = document.querySelector(".postList");
+    postElement.innerHTML = PostList(filteredData);
+}
