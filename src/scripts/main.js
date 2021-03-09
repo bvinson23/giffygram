@@ -23,7 +23,7 @@ const showNavBar = () => {
   }
 
 const showFooter = () => {
-    // Get a reference to the location on the DOM where the nav will display
+    // Get a reference to the location on the DOM where the footer will display
     const footerElement = document.querySelector("footer");
     footerElement.innerHTML = Footer();
 }
