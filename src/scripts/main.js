@@ -38,14 +38,6 @@ applicationElement.addEventListener("click", event => {
     }
 })
 
-// applicationElement.addEventListener("change", event => {
-//     if(event.target.id === "yearSelection") {
-//         const yearAsNumber = parseInt(event.target.value)
-
-//         console.log(`User wants to see posts since ${yearAsNumber}`)
-//     }
-// })
-
 applicationElement.addEventListener("click", event => {
     if(event.target.id === "directMessageIcon"){
         alert("Compose a direct message?")
