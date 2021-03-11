@@ -1,12 +1,13 @@
-import { getUsers, getPosts, usePostCollection } from "./data/Datamanager.js"
+import { getUsers, getPosts, usePostCollection, getLoggedInUser, createPost } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
 import { Footer } from "./footer.js"
+import { PostEntry } from "./feed/PostEntry.js"
 
 const showPostList = () => {
     const postElement = document.querySelector(".postList");
       getPosts().then((allPosts) => {
-          postElement.innerHTML = PostList(allPosts);
+          postElement.innerHTML = PostList(allPosts.reverse());
       })
   }
   
@@ -18,6 +19,7 @@ const showNavBar = () => {
   
   const startGiffyGram = () => {
         showNavBar();
+        showPostEntry();
         showPostList();
         showFooter();
   }
@@ -27,21 +29,27 @@ const showFooter = () => {
     const footerElement = document.querySelector("footer");
     footerElement.innerHTML = Footer();
 }
-startGiffyGram();
-getUsers();
 
-const applicationElement = document.querySelector(".giffygram");
+const showPostEntry = () => { 
+    //Get a reference to the location on the DOM where the nav will display
+    const entryElement = document.querySelector(".entryForm");
+    entryElement.innerHTML = PostEntry();
+  }
 
-applicationElement.addEventListener("click", event => {
-    if(event.target.id === "logout"){
-        console.log("You clicked on logout")
-    }
-})
+  getUsers();
+  
+  const applicationElement = document.querySelector(".giffygram");
+  
+  applicationElement.addEventListener("click", event => {
+      if(event.target.id === "logout"){
+          console.log("You clicked on logout")
+        }
+    })
 
-applicationElement.addEventListener("click", event => {
-    if(event.target.id === "directMessageIcon"){
-        alert("Compose a direct message?")
-    }
+    applicationElement.addEventListener("click", event => {
+        if(event.target.id === "directMessageIcon"){
+            alert("Compose a direct message?")
+        }
 })
 
 applicationElement.addEventListener("click", event => {
@@ -78,3 +86,36 @@ const showFilteredPosts = (year) => {
     const postElement = document.querySelector(".postList");
     postElement.innerHTML = PostList(filteredData);
 }
+
+applicationElement.addEventListener("click", event => {
+    if (event.target.id === "newPost__cancel") {
+        //clear the input fields
+    }
+  })
+  
+  applicationElement.addEventListener("click", event => {
+      event.preventDefault();
+    if (event.target.id === "newPost__submit") {
+        //collect the input values into an object to post to the DB
+      const title = document.querySelector("input[name='postTitle']")
+      const url = document.querySelector("input[name='postURL']")
+      const description = document.querySelector("textarea[name='postDescription']")
+      //we have not created a user yet - for now, we will hard code `1`.
+      //we can add the current time as well
+      const postObject = {
+          title: title.value,
+          imageURL: url.value,
+          description: description.value,
+          userId: getLoggedInUser().id,
+          timestamp: Date.now()
+        }
+        
+        // be sure to import from the DataManager
+        createPost(postObject)
+        .then(response => {
+            showPostList();
+        })
+    }
+  })
+
+startGiffyGram();

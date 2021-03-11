@@ -35,6 +35,30 @@
       "timestamp": 1561695022819,
       "title": "Facts",
       "id": 3
+    },
+    {
+      "title": "End your whole career",
+      "imageURL": "https://media.giphy.com/media/gtakVlnStZUbe/giphy.gif",
+      "description": "Hot fire...",
+      "userId": 1,
+      "timestamp": 1615477943166,
+      "id": 4
+    },
+    {
+      "title": "Naps",
+      "imageURL": "https://media.giphy.com/media/iacuoDvwA5JZK/giphy.gif",
+      "description": "I take that",
+      "userId": 1,
+      "timestamp": 1615478224494,
+      "id": 5
+    },
+    {
+      "title": "Why?!",
+      "imageURL": "https://media.giphy.com/media/IVDYYv6Cto6LS/giphy.gif",
+      "description": "",
+      "userId": 1,
+      "timestamp": 1615479657386,
+      "id": 6
     }
   ],
   "messages": []
