@@ -6,23 +6,23 @@ import { PostEntry } from "./feed/PostEntry.js"
 
 const showPostList = () => {
     const postElement = document.querySelector(".postList");
-      getPosts().then((allPosts) => {
-          postElement.innerHTML = PostList(allPosts.reverse());
-      })
-  }
-  
+    getPosts().then((allPosts) => {
+        postElement.innerHTML = PostList(allPosts.reverse());
+    })
+}
+
 const showNavBar = () => {
     // Get a reference to the location on the DOM where the nav will display
     const navElement = document.querySelector("nav");
     navElement.innerHTML = NavBar();
 }
-  
-  const startGiffyGram = () => {
-        showNavBar();
-        showPostEntry();
-        showPostList();
-        showFooter();
-  }
+
+const startGiffyGram = () => {
+    showNavBar();
+    showPostEntry();
+    showPostList();
+    showFooter();
+}
 
 const showFooter = () => {
     // Get a reference to the location on the DOM where the footer will display
@@ -30,36 +30,36 @@ const showFooter = () => {
     footerElement.innerHTML = Footer();
 }
 
-const showPostEntry = () => { 
+const showPostEntry = () => {
     //Get a reference to the location on the DOM where the nav will display
     const entryElement = document.querySelector(".entryForm");
     entryElement.innerHTML = PostEntry();
-  }
+}
 
-  getUsers();
-  
-  const applicationElement = document.querySelector(".giffygram");
-  
-  applicationElement.addEventListener("click", event => {
-      if(event.target.id === "logout"){
-          console.log("You clicked on logout")
-        }
-    })
+getUsers();
 
-    applicationElement.addEventListener("click", event => {
-        if(event.target.id === "directMessageIcon"){
-            alert("Compose a direct message?")
-        }
+const applicationElement = document.querySelector(".giffygram");
+
+applicationElement.addEventListener("click", event => {
+    if (event.target.id === "logout") {
+        console.log("You clicked on logout")
+    }
 })
 
 applicationElement.addEventListener("click", event => {
-    if(event.target.id === "homeIcon"){
+    if (event.target.id === "directMessageIcon") {
+        alert("Compose a direct message?")
+    }
+})
+
+applicationElement.addEventListener("click", event => {
+    if (event.target.id === "homeIcon") {
         alert("Are you sure you want to go home?")
     }
 })
 
 applicationElement.addEventListener("click", event => {
-    if(event.target.id.startsWith("edit")){
+    if (event.target.id.startsWith("edit")) {
         console.log("post clicked", event.target.id.split("--"))
         console.log("the id is", event.target.id.split("--")[1])
     }
@@ -91,31 +91,31 @@ applicationElement.addEventListener("click", event => {
     if (event.target.id === "newPost__cancel") {
         //clear the input fields
     }
-  })
-  
-  applicationElement.addEventListener("click", event => {
-      event.preventDefault();
+})
+
+applicationElement.addEventListener("click", event => {
+    event.preventDefault();
     if (event.target.id === "newPost__submit") {
         //collect the input values into an object to post to the DB
-      const title = document.querySelector("input[name='postTitle']")
-      const url = document.querySelector("input[name='postURL']")
-      const description = document.querySelector("textarea[name='postDescription']")
-      //we have not created a user yet - for now, we will hard code `1`.
-      //we can add the current time as well
-      const postObject = {
-          title: title.value,
-          imageURL: url.value,
-          description: description.value,
-          userId: getLoggedInUser().id,
-          timestamp: Date.now()
+        const title = document.querySelector("input[name='postTitle']")
+        const url = document.querySelector("input[name='postURL']")
+        const description = document.querySelector("textarea[name='postDescription']")
+        //we have not created a user yet - for now, we will hard code `1`.
+        //we can add the current time as well
+        const postObject = {
+            title: title.value,
+            imageURL: url.value,
+            description: description.value,
+            userId: getLoggedInUser().id,
+            timestamp: Date.now()
         }
-        
+
         // be sure to import from the DataManager
         createPost(postObject)
-        .then(response => {
-            showPostList();
-        })
+            .then(response => {
+                showPostList();
+            })
     }
-  })
+})
 
 startGiffyGram();
