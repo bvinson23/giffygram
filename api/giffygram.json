@@ -59,6 +59,14 @@
       "userId": 1,
       "timestamp": 1616022802992,
       "id": 7
+    },
+    {
+      "title": "Roll Tide",
+      "imageURL": "https://media.giphy.com/media/8QPjGEzTLJpBbsH7kS/giphy.gif",
+      "description": "Sweet Sixteen!",
+      "userId": 1,
+      "timestamp": 1616516460061,
+      "id": 8
     }
   ],
   "messages": []

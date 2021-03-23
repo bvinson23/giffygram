@@ -1,4 +1,4 @@
-import { getUsers, getPosts, usePostCollection, getLoggedInUser, createPost } from "./data/Datamanager.js"
+import { getUsers, getPosts, usePostCollection, getLoggedInUser, createPost, deletePost } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
 import { Footer } from "./footer.js"
@@ -117,5 +117,16 @@ applicationElement.addEventListener("click", event => {
             })
     }
 })
+
+applicationElement.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.id.startsWith("delete")) {
+      const postId = event.target.id.split("__")[1];
+      deletePost(postId)
+        .then(response => {
+          showPostList();
+        })
+    }
+  })
 
 startGiffyGram();
