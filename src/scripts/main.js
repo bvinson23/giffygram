@@ -163,6 +163,7 @@ applicationElement.addEventListener("click", event => {
         .then(response => {
           showPostList();
         })
+        .then(showPostEntry())
     }
   })
 
