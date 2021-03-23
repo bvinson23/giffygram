@@ -21,14 +21,6 @@
       "id": 1
     },
     {
-      "imageURL": "https://media.giphy.com/media/H4plX4N9XdXH2H1Bku/giphy.gif",
-      "userId": 1,
-      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-      "timestamp": 1561695022814,
-      "title": "Trying to get to the bartender on a crowded Friday Night",
-      "id": 2
-    },
-    {
       "imageURL": "https://media.giphy.com/media/FoVzfcqCDSb7zCynOp/giphy.gif",
       "userId": 2,
       "description": "",
@@ -59,6 +51,14 @@
       "userId": 1,
       "timestamp": 1615479657386,
       "id": 6
+    },
+    {
+      "title": "Kitty",
+      "imageURL": "https://media.giphy.com/media/q5D43XCcHr8v6/giphy.gif",
+      "description": "i love kitties",
+      "userId": 1,
+      "timestamp": 1616022802992,
+      "id": 7
     }
   ],
   "messages": []
