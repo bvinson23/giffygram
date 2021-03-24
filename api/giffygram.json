@@ -1,14 +1,19 @@
 {
   "users": [
     {
-      "name": "Melissa",
-      "email": "melissa@home.com",
+      "name": "Taylor",
+      "email": "taylor@taylor.com",
       "id": 1
     },
     {
       "name": "Brandon",
-      "email": "brandonvinson23@gmail.com",
+      "email": "brandon@brandon.com",
       "id": 2
+    },
+    {
+      "name": "Olive",
+      "email": "olive@kitty.com",
+      "id": 3
     }
   ],
   "posts": [
@@ -91,6 +96,14 @@
       "userId": 1,
       "timestamp": 1616527270398,
       "id": 12
+    },
+    {
+      "title": "Lunch",
+      "imageURL": "https://media.giphy.com/media/VhdO3vOqqJ0PJQt5OA/giphy.gif",
+      "description": "",
+      "userId": 3,
+      "timestamp": 1616600363563,
+      "id": 13
     }
   ],
   "messages": []
