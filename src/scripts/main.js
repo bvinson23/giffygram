@@ -1,7 +1,7 @@
 import {
     getUsers, getPosts, usePostCollection, getLoggedInUser, createPost,
     deletePost, getSinglePost, updatePost,
-    logoutUser, setLoggedInUser, loginUser, registerUser
+    logoutUser, setLoggedInUser, loginUser, registerUser, getMyPosts
 } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
@@ -11,8 +11,8 @@ import { PostEdit } from "./feed/PostEdit.js"
 import { LoginForm } from "./auth/LoginForm.js"
 import { RegisterForm } from "./auth/RegisterForm.js"
 
+const postElement = document.querySelector(".postList");
 const showPostList = () => {
-    const postElement = document.querySelector(".postList");
     getPosts().then((allPosts) => {
         postElement.innerHTML = PostList(allPosts.reverse());
     })
@@ -84,7 +84,6 @@ const showFilteredPosts = (year) => {
             return singlePost
         }
     })
-    const postElement = document.querySelector(".postList");
     postElement.innerHTML = PostList(filteredData);
 }
 
@@ -219,12 +218,22 @@ applicationElement.addEventListener("click", event => {
 //event listener for logging out
 applicationElement.addEventListener("click", event => {
     if (event.target.id === "logout") {
-      logoutUser();
-      console.log(getLoggedInUser());
-      sessionStorage.clear();
-      checkForUser();
+        logoutUser();
+        console.log(getLoggedInUser());
+        sessionStorage.clear();
+        checkForUser();
     }
-  })
+})
+
+//event listener for My Grams button
+applicationElement.addEventListener("click", event => {
+
+    if (event.target.id === "myPosts") {
+        getMyPosts().then((allPosts) => {
+            postElement.innerHTML = PostList(allPosts.reverse());
+        })
+    }
+})
 
 const checkForUser = () => {
     if (sessionStorage.getItem("user")) {
@@ -242,7 +251,6 @@ const showLoginRegister = () => {
     //template strings can be used here too
     entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
     //make sure the post list is cleared out too
-    const postElement = document.querySelector(".postList");
     postElement.innerHTML = "";
 }
 
