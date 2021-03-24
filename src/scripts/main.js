@@ -1,4 +1,5 @@
-import { getUsers, getPosts, usePostCollection, getLoggedInUser, createPost, deletePost, getSinglePost, updatePost } from "./data/Datamanager.js"
+import { getUsers, getPosts, usePostCollection, getLoggedInUser, createPost, 
+    deletePost, getSinglePost, updatePost, logoutUser, setLoggedInUser } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
 import { Footer } from "./footer.js"
@@ -43,9 +44,10 @@ const applicationElement = document.querySelector(".giffygram");
 
 applicationElement.addEventListener("click", event => {
     if (event.target.id === "logout") {
-        console.log("You clicked on logout")
+      logoutUser();
+      console.log(getLoggedInUser());
     }
-})
+  })
 
 applicationElement.addEventListener("click", event => {
     if (event.target.id === "directMessageIcon") {
@@ -167,4 +169,14 @@ applicationElement.addEventListener("click", event => {
     }
   })
 
-startGiffyGram();
+const checkForUser = () => {
+    if (sessionStorage.getItem("user")){
+        setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+        startGiffyGram();
+    }else {
+        //show login/register
+        console.log("showLogin")
+    }
+}
+
+checkForUser();

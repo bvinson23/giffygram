@@ -31,10 +31,10 @@ export const createPost = postObj => {
         .then(response => response.json())
   }
 
-const loggedInUser = {
-    id: 1,
-	name: "Bryan",
-	email: "bryan@bn.com"
+let loggedInUser = {}
+
+export const logoutUser = () => {
+    loggedInUser = {}
 }
 
 export const getLoggedInUser = () => {
@@ -68,4 +68,8 @@ export const deletePost = postId => {
       })
       .then(response => response.json())
       .then(getPosts)
+  }
+
+  export const setLoggedInUser = (userObj) => {
+      loggedInUser = userObj
   }
