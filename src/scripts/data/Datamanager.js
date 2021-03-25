@@ -1,9 +1,34 @@
-export const getUsers = () => {
-    return fetch("http://localhost:8088/users")
-        .then(response => response.json())
-}
+//----------global variables----------------//
+
+let loggedInUser = {}
 let postCollection = [];
 
+//----------functions----------------------//
+
+//function to return the logged in user
+export const getLoggedInUser = () => {
+    return { ...loggedInUser };
+}
+
+//function to set the logged in user based on the sessionStorage
+export const setLoggedInUser = (userObj) => {
+    loggedInUser = userObj
+}
+
+//function to go back to the login screen once you logout
+export const logoutUser = () => {
+    loggedInUser = {}
+}
+
+//function to show the number of likes of a post
+export const getNumberOfLikes = (postId) => {
+    getLikes(postId)
+    .then(response => {
+        document.querySelector(`#likes__${postId}`).innerHTML = `👍 ${response.length}`;
+    })
+}
+
+//function used to manipulate the post collection
 export const usePostCollection = () => {
     // Best practice: we don't want to alter the original state, so
     // make a copy of it and then return it
@@ -11,6 +36,15 @@ export const usePostCollection = () => {
     return [...postCollection]
 }
 
+//--------all fetch calls----------------------------------------------------//
+
+//fetch call to get all the users
+export const getUsers = () => {
+    return fetch("http://localhost:8088/users")
+        .then(response => response.json())
+}
+
+//fetch call to get all the posts
 export const getPosts = () => {
     const userId = getLoggedInUser().id
     return fetch(`http://localhost:8088/posts?_expand=user`)
@@ -22,6 +56,7 @@ export const getPosts = () => {
         })
 }
 
+//fetch call to get the posts of the logged in user
 export const getMyPosts = () => {
     const userId = getLoggedInUser().id
     return fetch(`http://localhost:8088/posts?userId=${userId}&_expand=user`)
@@ -33,6 +68,7 @@ export const getMyPosts = () => {
     })
 }
 
+//fetch call to create a post
 export const createPost = postObj => {
     return fetch("http://localhost:8088/posts", {
         method: "POST",
@@ -45,16 +81,7 @@ export const createPost = postObj => {
         .then(response => response.json())
 }
 
-let loggedInUser = {}
-
-export const logoutUser = () => {
-    loggedInUser = {}
-}
-
-export const getLoggedInUser = () => {
-    return { ...loggedInUser };
-}
-
+//fetch call to delete a post
 export const deletePost = postId => {
     return fetch(`http://localhost:8088/posts/${postId}`, {
         method: "DELETE",
@@ -67,11 +94,13 @@ export const deletePost = postId => {
         .then(getPosts)
 }
 
+//fetch call to get a single post to edit that post
 export const getSinglePost = (postId) => {
     return fetch(`http://localhost:8088/posts/${postId}`)
         .then(response => response.json())
 }
 
+//fetch call to update a post once it has been edited
 export const updatePost = postObj => {
     return fetch(`http://localhost:8088/posts/${postObj.id}`, {
         method: "PUT",
@@ -82,10 +111,6 @@ export const updatePost = postObj => {
     })
         .then(response => response.json())
         .then(getPosts)
-}
-
-export const setLoggedInUser = (userObj) => {
-    loggedInUser = userObj
 }
 
 //fetch call to login a user
@@ -121,11 +146,13 @@ export const registerUser = (userObj) => {
         })
 }
 
+//fetch call to get the number of likes on a post
 export const getLikes = (postId) => {
     return fetch(`http://localhost:8088/userLikes?postId=${postId}`)
     .then(response => response.json())
 }
 
+//fetch call when adding a like to a post
 export const postLike = likeObject => {
     return fetch(`http://localhost:8088/userLikes/`, {
         method: "POST",
@@ -136,11 +163,4 @@ export const postLike = likeObject => {
     })
         .then(response => response.json())
         .then(getPosts)
-  }
-
-  export const getNumberOfLikes = (postId) => {
-      getLikes(postId)
-      .then(response => {
-          document.querySelector(`#likes__${postId}`).innerHTML = `👍 ${response.length}`;
-      })
   }
