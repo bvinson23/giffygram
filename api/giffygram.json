@@ -14,6 +14,11 @@
       "name": "Olive",
       "email": "olive@kitty.com",
       "id": 3
+    },
+    {
+      "name": "Luna",
+      "email": "luna@kitty.com",
+      "id": 4
     }
   ],
   "posts": [
@@ -104,6 +109,22 @@
       "userId": 3,
       "timestamp": 1616600363563,
       "id": 13
+    },
+    {
+      "title": "Fist Bump",
+      "imageURL": "https://media.giphy.com/media/YTXujdmJn3iOVZhMlQ/giphy.gif",
+      "description": "Deal with it",
+      "userId": 4,
+      "timestamp": 1616625615253,
+      "id": 14
+    },
+    {
+      "title": "She's right",
+      "imageURL": "https://media.giphy.com/media/l0ExstWCBMdcNHygw/giphy.gif",
+      "description": "",
+      "userId": 2,
+      "timestamp": 1616681063498,
+      "id": 15
     }
   ],
   "messages": []
