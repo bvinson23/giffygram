@@ -127,5 +127,32 @@
       "id": 15
     }
   ],
-  "messages": []
+  "messages": [],
+  "userLikes": [
+    {
+      "postId": "15",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "postId": "15",
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "postId": "14",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "postId": "7",
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "postId": "8",
+      "userId": 2,
+      "id": 5
+    }
+  ]
 }

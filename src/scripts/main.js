@@ -1,7 +1,7 @@
 import {
     getUsers, getPosts, usePostCollection, getLoggedInUser, createPost,
     deletePost, getSinglePost, updatePost,
-    logoutUser, setLoggedInUser, loginUser, registerUser, getMyPosts
+    logoutUser, setLoggedInUser, loginUser, registerUser, getMyPosts, postLike
 } from "./data/Datamanager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js"
@@ -231,6 +231,21 @@ applicationElement.addEventListener("click", event => {
     if (event.target.id === "myPosts") {
         getMyPosts().then((allPosts) => {
             postElement.innerHTML = PostList(allPosts.reverse());
+        })
+    }
+})
+
+//event listener for like button
+applicationElement.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.id.startsWith("like")) {
+        const likeObject = {
+            postId: event.target.id.split("__")[1],
+            userId: getLoggedInUser().id
+        }
+        postLike(likeObject)
+        .then(response => {
+            showPostList();
         })
     }
 })
