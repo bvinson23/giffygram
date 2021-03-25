@@ -46,6 +46,20 @@ const showFooter = () => {
     footerElement.innerHTML = Footer();
 }
 
+//function that returns all the users in the db
+getUsers();
+
+//function to check to see if there is a logged in user
+const checkForUser = () => {
+    if (sessionStorage.getItem("user")) {
+        setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+        startGiffyGram();
+    } else {
+        //show login/register
+        showLoginRegister();
+    }
+}
+
 //function to boot the site
 const startGiffyGram = () => {
     showNavBar();
@@ -53,9 +67,6 @@ const startGiffyGram = () => {
     showPostList();
     showFooter();
 }
-
-//function that returns all the users in the db
-getUsers();
 
 //function to boot up the site while checking for a logged in user
 checkForUser();
@@ -81,16 +92,6 @@ const showEdit = (postObj) => {
     entryElement.innerHTML = PostEdit(postObj);
 }
 
-//function to check to see if there is a logged in user
-const checkForUser = () => {
-    if (sessionStorage.getItem("user")) {
-        setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
-        startGiffyGram();
-    } else {
-        //show login/register
-        showLoginRegister();
-    }
-}
 
 //----------EVENT LISTENERS-------------------//
 
