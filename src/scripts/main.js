@@ -49,6 +49,16 @@ const showFooter = () => {
 //function that returns all the users in the db
 getUsers();
 
+//function to show the login & register forms
+const showLoginRegister = () => {
+    showNavBar();
+    const entryElement = document.querySelector(".entryForm");
+    //template strings can be used here too
+    entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+    //make sure the post list is cleared out too
+    postElement.innerHTML = "";
+}
+
 //function to check to see if there is a logged in user
 const checkForUser = () => {
     if (sessionStorage.getItem("user")) {
@@ -92,21 +102,10 @@ const showEdit = (postObj) => {
     entryElement.innerHTML = PostEdit(postObj);
 }
 
-
 //----------EVENT LISTENERS-------------------//
 
 //global variable for use in event listeners
 const applicationElement = document.querySelector(".giffygram");
-
-//function to show the login & register forms
-const showLoginRegister = () => {
-    showNavBar();
-    const entryElement = document.querySelector(".entryForm");
-    //template strings can be used here too
-    entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
-    //make sure the post list is cleared out too
-    postElement.innerHTML = "";
-}
 
 //event listener for registering a user
 applicationElement.addEventListener("click", event => {
